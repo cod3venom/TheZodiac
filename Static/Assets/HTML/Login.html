@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="Static/Assets/CSS/Colors.css" />
+    <link rel="stylesheet" href="Static/Assets/CSS/Main.css" />
+    <link rel="stylesheet" href="Static/Assets/CSS/Mobile.css" />
+    <link rel="stylesheet" href="Static/Assets/CSS/Tablet.css" />
+    <link rel="stylesheet" href="Static/Assets/CSS/Laptop.css" />
+    <link rel="stylesheet" href="Static/Assets/CSS/Desktop.css" />
+    <title>Title</title>
+</head>
+
+<body class="Centered">
+<div id="loginBoard">
+    <div class="zodiacLogo">
+        <img src="Static/Assets/IMG/ZodiacLoginLogo.png">
+    </div>
+    <div class="Status">
+
+    </div>
+    <div class="Registration Centered">
+        <form id="RegisterForm" action="Operator.php" method="POST">
+            <input type="hidden" name="SignUp">
+            <div class="step" id="MainStep">
+                <div class="TextBox Relative">
+                    <input type="email" name="Email" placeholder="EMAIL[0];" required>
+                    <img class="Left_Icon " src="Static/Assets/IMG/emailIconMobile.png">
+                </div>
+                <div class="TextBox Relative">
+                    <input type="password" name="Password" placeholder="PASSWORD[0];" required>
+                    <img class="Left_Icon " src="Static/Assets/IMG/passwordIconMobile.png">
+                </div>
+                <div class="Block">
+                    <button id="SignUpBtn" class="submitbtn" type="submit">BTN[0];</button>
+                </div>
+                <div class="Block Tall Vertically">
+                        <span>
+                            NOT_REGISTERED[0];
+                            <a href="/">REGISTRATION[0];</a>
+                        </span>
+                </div>
+                <div class="Block Terms Centered">
+                    <div class="Block">
+                        <span>TERMS[0]; <a href="">TERMS[1];</a> </span>
+                        <span> TERMS[2];.<br/><br/></span>
+                        <span>TERMS[3];.<br/>
+                            <a href="">TERMS[4];</a>
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="Static/Assets/JS/Jquery.js"></script>
+<script type="text/javascript" src="Static/Assets/JS/Main.js"></script>
+<script type="text/javascript" src="Static/Assets/JS/EventHandler.js"></script>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="Static/Assets/CSS/Colors.css" />
+    <link rel="stylesheet" href="Static/Assets/CSS/Main.css" />
+    <link rel="stylesheet" href="Static/Assets/CSS/Mobile.css" />
+    <link rel="stylesheet" href="Static/Assets/CSS/Tablet.css" />
+    <link rel="stylesheet" href="Static/Assets/CSS/Laptop.css" />
+    <link rel="stylesheet" href="Static/Assets/CSS/Desktop.css" />
+    <title>Title</title>
+</head>
+<body onload="addNewUserSliderLoader();">
+    <div id="AddNewModal" class="Centered Shadow">
+        <div class="Block EnableBlur">
+            <div id="AddNewModalLogo" class="Centered DisableBlur">
+                <img src="Static/Assets/IMG/zodiacLogoAddUserIconMobile.png">
+            </div>
+            <div class="AddNewUsers DisableBlur">
+                <div id="slider_3">
+                    <form id="AddNewUsers">
+                        <div class="TextBox Relative">
+                            <input type="text" name="Dignity" placeholder="LASTFIRSTNAME++;">
+                            <img class="Left_Icon " src="Static/Assets/IMG/UserIconMobile.png">
+                        </div>
+                        <div class="TextBox Relative">
+                            <input type="text" name="Gender" placeholder="GENDER++;">
+                            <img class="Left_Icon " src="Static/Assets/IMG/genderIconMobile.png">
+                        </div>
+                        <div class="TextBox Relative">
+                            <input type="date" name="Date">
+                        </div>
+                        <div class="TextBox Relative">
+                            <input type="text" name="BirthHour" placeholder="BIRTHHOUR++;">
+                        </div>
+                        <div class="TextBox Relative">
+                            <input type="text" name="BirthPlace" placeholder="BIRTHPLACE++;">
+                        </div>
+                    </form>
+                </div>
+                <div id="slider_4" class="Centered">
+                        <div id="whitePlaceHolder" class="Centered">
+                            <img id="plusIcon" src="Static/Assets/IMG/plus.png">
+                            <input type="file" accept="image/*"  onchange="pushAvatar(this);" id="avatarBrowser">
+                        </div>
+
+                </div>
+            </div>
+            <div id="slideNavigation" class="Centered Fixed DisableBlur">
+                <div id="dots"></div>
+                <div id="NavigationNext">NEXT[0]</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript" src="Static/Assets/JS/Jquery.js"></script>
+<script type="text/javascript" src="Static/Assets/JS/Main.js"></script>
+<script type="text/javascript" src="Static/Assets/JS/EventHandler.js"></script>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="Static/Assets/CSS/Colors.css" />
+    <link rel="stylesheet" href="Static/Assets/CSS/Main.css" />
+    <link rel="stylesheet" href="Static/Assets/CSS/Mobile.css" />
+    <link rel="stylesheet" href="Static/Assets/CSS/Tablet.css" />
+    <link rel="stylesheet" href="Static/Assets/CSS/Laptop.css" />
+    <link rel="stylesheet" href="Static/Assets/CSS/Desktop.css" />
+    <title>Title</title>
+</head>
+<body>
+<div class="Block" id="UserFinder">
+    <div class="Block FinderParent">
+        <div class="Block topMenu">
+             <div id="TopMenu">
+                <div id="MenuLogo">
+                    <img src="Static/Assets/IMG/zodiacLogoTopIconMobile.png">
+                </div>
+                <div id="ProfileMenu" class="Centered">
+                    <button id="topPlusBtn" class="Centered"><img src="Static/Assets/IMG/plus.png"></button>
+                    <button id="topSearchBtn" class="Centered"><img src="Static/Assets/IMG/searchTopIconMobile.png"></button>
+                    <button id="topHamburger" class="Centered"><img src="Static/Assets/IMG/hamburgerBlack.png"></button>
+                </div>
+            </div>
+        </div>
+        <div class="Block" id="FinderSearch">
+            <form id="UserFinderForm">
+                <input type="hidden" name="SearchOwnUser">
+                <button id="searchIcon"></button>
+                <input type="text" placeholder="Szukaj osób" id="searchTXT" name="User">
+                <button type="button" id="filterIcon" onclick="color.ReColor()"></button>
+
+                <div class="Block" id="FilterContainer">
+                    <div class="Block SpaceBetween">
+                        <ul class="CheckStack">
+                            <li class="Centered">
+                                <input color="Action" id="ActionChk" type="checkbox" name="Action" onclick="color.setCheckBoxBackground(this)">
+                                <span>Action</span>
+                            </li>
+                            <li class="Centered">
+                                <input color="Matter" id="MatterChk" type="checkbox" name="Matter" onclick="color.setCheckBoxBackground(this)">
+                                <span>Matter</span>
+                            </li>
+                            <li class="Centered">
+                                <input color="Information" id="InformationChk" type="checkbox" name="Information" onclick="color.setCheckBoxBackground(this)">
+                                <span>Information</span>
+                            </li>
+                            <li class="Centered">
+                                <input color="Feeling" id="FeelingChk" type="checkbox" name="Feeling" onclick="color.setCheckBoxBackground(this)">
+                                <span>Feeling</span>
+                            </li>
+                        </ul>
+                        <ul class="CheckStack">
+                            <li class="Centered">
+                                <input color="Fun" id="FunChk" type="checkbox" name="Fun"onclick=" color.setCheckBoxBackground(this)">
+                                <span>Fun</span>
+                            </li>
+                            <li class="Centered">
+                                <input color="Usability" id="UsabilityChk" type="checkbox" name="Usability" onclick="color.setCheckBoxBackground(this)">
+                                <span>Usability</span>
+                            </li>
+                            <li class="Centered">
+                                <input color="Relations" id="RelationsChk" type="checkbox" name="Relations" onclick="color.setCheckBoxBackground(this)">
+                                <span>Relations</span>
+                            </li>
+                            <li class="Centered">
+                                <input color="Desire" id="DesireChk" type="checkbox" name="Desire" onclick="color.setCheckBoxBackground(this)">
+                                <span>Desire&Power</span>
+                            </li>
+                        </ul>
+                        <ul class="CheckStack">
+                            <li class="Centered">
+                                <input color="Seek" id="SeekChk" type="checkbox" name="Seek" onclick="color.setCheckBoxBackground(this)">
+                                <span>Seek&Explore</span>
+                            </li>
+                            <li class="Centered">
+                                <input color="Career" id="CareerChk" type="checkbox" name="Career" onclick="color.setCheckBoxBackground(this)">
+                                <span>Career</span>
+                            </li>
+                            <li class="Centered">
+                                <input color="Future" id="FutureChk" type="checkbox" name="Future" onclick="color.setCheckBoxBackground(this)">
+                                <span>Future</span>
+                            </li>
+                            <li class="Centered">
+                                <input color="Spiritual" id="SpiritualChk" type="checkbox" name="Spiritual" onclick="color.setCheckBoxBackground(this)">
+                                <span>Spiritual</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+            <div class="Block" id="FoundedOwnUsers">
+                <div class="UserBlock Flex">
+                    <a href="">
+                        <div class="FoundUserAvatar" style=
+                                '
+                                            background-image: url("Static/Assets/IMG/michalAvatar.png");
+                                            background-size: cover;
+                                            background-repeat: no-repeat;
+                                        '>
+                        </div>
+                    </a>
+                    <div class="FoundUserInfo">
+                        <div class="Block FoundUserProgressBar Centered">
+                            <div class="Progress Action"></div>
+                            <div class="Progress Fun"></div>
+                            <div class="Progress Seek"></div>
+                            <div class="Progress Matter"></div>
+                            <div class="Progress Usability"></div>
+                            <div class="Progress Career"></div>
+                            <div class="Progress Information"></div>
+                            <div class="Progress Relations"></div>
+                            <div class="Progress Future"></div>
+                            <div class="Progress Feeling"></div>
+                            <div class="Progress Desire"></div>
+                            <div class="Progress Spiritual"></div>
+                        </div>
+                        <span class="FoundUserName">Michal Wojda</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+<script type="text/javascript" src="Static/Assets/JS/Jquery.js"></script>
+<script type="text/javascript" src="Static/Assets/JS/Main.js"></script>
+<script type="text/javascript" src="Static/Assets/JS/EventHandler.js"></script>
+<script type="text/javascript" src="Static/Assets/JS/CheckBoxUi.js"></script>
+
+</html>

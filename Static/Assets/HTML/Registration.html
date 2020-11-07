@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="Static/Assets/CSS/Colors.css" />
+    <link rel="stylesheet" href="Static/Assets/CSS/Main.css" />
+    <link rel="stylesheet" href="Static/Assets/CSS/Mobile.css" />
+    <link rel="stylesheet" href="Static/Assets/CSS/Tablet.css" />
+    <link rel="stylesheet" href="Static/Assets/CSS/Laptop.css" />
+    <link rel="stylesheet" href="Static/Assets/CSS/Desktop.css" />
+    <title>Title</title>
+</head>
+
+<body class="Centered">
+    <div id="loginBoard">
+        <div class="zodiacLogo">
+            <img src="Static/Assets/IMG/ZodiacLoginLogo.png">
+        </div>
+        <div class="Status">
+
+        </div>
+        <div class="Registration Centered">
+            <form id="RegisterForm" action="Operator.php" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="Register_user">
+                <div class="step" id="MainStep">
+                    <div class="TextBox Relative">
+                        <input type="email" name="Email" placeholder="EMAIL[0];" required>
+                        <img class="Left_Icon " src="Static/Assets/IMG/emailIconMobile.png">
+                    </div>
+                    <div class="TextBox Relative">
+                        <input type="password" name="Password" placeholder="PASSWORD[0];" required>
+                        <img class="Left_Icon " src="Static/Assets/IMG/passwordIconMobile.png">
+                    </div>
+                    <div class="Block">
+                        <button id="RegisterNextBtn0" class="submitbtn" type="button">BTN[0];</button>
+                    </div>
+                    <div class="Block Tall Vertically">
+                        <span>
+                            ALREADY_REGISTERED[0];
+                            <a href="/?SignIn">LOGIN[0];</a>
+                        </span>
+                    </div>
+                    <div class="Block Terms Centered">
+                        <div class="Block">
+                            <span>TERMS[0]; <a href="">TERMS[1];</a> </span>
+                            <span> TERMS[2];.<br/><br/></span>
+                            <span>TERMS[3];.<br/>
+                                <a href="">TERMS[4];</a>
+                            </span>
+                        </span>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="step">
+                    <div id="step_slider">
+                        <div id="slider_0">
+                            <div id="body">
+                                <div class="TextBox Relative">
+                                    <input type="text" name="Firstname" placeholder="FISRTNAME++;" required>
+                                    <img class="Left_Icon " src="Static/Assets/IMG/UserIconMobile.png">
+                                </div>
+                                <div class="TextBox Relative">
+                                    <input type="text" name="Lastname" placeholder="LASTNAME++;" required>
+                                    <img class="Left_Icon " src="Static/Assets/IMG/UserIconMobile.png">
+                                </div>
+                                <div class="TextBox Relative">
+                                    <input type="text" name="Gender" placeholder="GENDER++;" required>
+                                    <img class="Left_Icon " src="Static/Assets/IMG/genderIconMobile.png">
+                                </div>
+                                <div class="TextBox Relative">
+                                    <input type="date" name="Birthday">
+                                </div>
+                            </div>
+                        </div>
+                        <div id="slider_1">
+                            <div class="Block Centered">
+                                <div id="whitePlaceHolder" class="Centered">
+                                    <img id="plusIcon" src="Static/Assets/IMG/plus.png">
+                                    <input type="file" name="Import" accept="image/*"  onchange="pushAvatar(this);" id="avatarBrowser" required>
+                                </div>
+                            </div>
+                            <div class="Block" id="whitePlaceHolderTitle">
+                                <span>ADD_AVATAR[0]</span>
+
+                            </div>
+
+                        </div>
+                        <div id="slider_2">
+                            <div class="freeOption">
+                                <div class="TextBox Relative">
+                                    <input type="number" name="Code" placeholder="CODE[0]" required>
+                                    <img class="Left_Icon " src="Static/Assets/IMG/diamentIconMobile.png">
+                                </div>
+                                <div class="Block">
+                                    <button type="submit" id="RegistrationWithKey" name="Registration">ACTIVATE[0]</button>
+                                </div>
+                                <div class="Block" id="ActivationTitle">
+                                    <span>ACTIVATION_INFO[0]</span>
+                                </div>
+                            </div>
+                            <div class="Block Plans Flex">
+                                <div class="Block Plan" key="day0" onclick="choosePlan(this)">
+                                    <div class="PlanContent Centered">
+                                        <div class="Block">
+                                            <span>PRICE[0]</span>
+                                            <span>DAY[0]</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="Block Plan" key="day1" onclick="choosePlan(this)">
+                                    <div class="PlanContent Centered">
+                                        <div class="Block">
+                                            <span>PRICE[1]</span>
+                                            <span>DAY[1]</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="Block Plan" key="day2" onclick="choosePlan(this)">
+                                    <div class="PlanContent Centered">
+                                        <div class="Block">
+                                            <span>PRICE[2]</span>
+                                            <span>DAY[2]</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="Block FastPayments">
+
+                            </div>
+                        </div>
+                        <div id="Success" class="Centered">
+                            <div class="flag">
+                                <!--<img src="Static/Assets/IMG/successIconMobile.png">-->
+                            </div>
+                        </div>
+
+                    </div>
+                    <div id="slideNavigation" class="Flex Fixed">
+                        <div id="dots"></div>
+                        <div id="NavigationNext">NEXT[0]</div>
+                    </div>
+
+                </div>
+            </form>
+
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="Static/Assets/JS/Jquery.js"></script>
+<script type="text/javascript" src="Static/Assets/JS/Main.js"></script>
+<script type="text/javascript" src="Static/Assets/JS/EventHandler.js"></script>
+
+</html>
