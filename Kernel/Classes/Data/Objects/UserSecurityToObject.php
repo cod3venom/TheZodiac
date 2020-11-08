@@ -8,6 +8,11 @@ use Kernel\Classes\Security\Restrictions;
 use Kernel\Classes\Data\Objects\UsersProfileToObject;
 use Kernel\Classes\Data\Objects\UserToObjectimpl;
 
+use Kernel\Classes\PHPMailer\PHPMailer;
+use Kernel\Classes\PHPMailer\SMTP;
+use Kernel\Classes\PHPMailer\Exception;
+
+
 //@Table=Customers.USER_SECURITY
 class UserSecurityToObject extends MySql implements UserToObjectimpl
 {
@@ -58,7 +63,7 @@ class UserSecurityToObject extends MySql implements UserToObjectimpl
 
     public function getUserRecovery(){return $this->USER_RECOVERY;}
     public function setUserRecovery($recovery){$this->USER_RECOVERY = $recovery;}
-    public function generateRecovery(){$this->USER_RECOVER = md5(microtime());}
+    public function generateRecovery(){$this->USER_RECOVERY = md5(microtime());}
 
     public function getUserIP(){return $this->USER_IP;}
     public function setUserIP($ip){$this->USER_IP = $ip;}
@@ -75,7 +80,37 @@ class UserSecurityToObject extends MySql implements UserToObjectimpl
          $this->CreateStatement(7);
          $this->stmt->bind_param('ssssss', $this->USER_ID, $this->USER_EMAIL, $this->USER_STATUS, $this->USER_RECOVERY,$this->USER_IP, $this->USER_COUNTRY);
          $this->Insert();
+         if($this->INSERT_STATUS === 1){
+             $this->SendActivationKey();
+         }
          return $this->INSERT_STATUS;
     }
 
+    private  function SendActivationKey(){
+        $mail = new PHPMailer(true);
+        try
+        {
+            $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+            $mail->isSMTP();
+            $mail->SMTPAuth = true;
+            $mail->SMTPSecure = 'ssl';
+            $mail->Host = 'smtp.gmail.com';
+            $mail->Port = '465';
+            $mail->isHTML();
+            $mail->Username = 'llekatyan@gmail.com';
+            $mail->Password = 'Networks0013';
+
+            $mail->setFrom('llekatyan@gmail.com', 'Sender Name');
+            $mail->addAddress($this->getEmail(), 'Receiver Name');
+            $mail->addReplyTo('llekatyan@gmail.com', 'Sender Name');
+            $mail->Subject = 'TheZodiac Activation';
+            $mail->Body = 'YOUR Activation KEY IS '.$this->getUserRecovery();
+            $mail->send();
+            echo "mail was  successfully sent to the" .$this->getEmail();
+        }
+        catch (Exception $ex)
+        {
+            echo "error ".PHP_EOL.$ex;
+        }
+    }
 }

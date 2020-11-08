@@ -52,6 +52,8 @@ class InitAccount extends MySql implements DataActionsimp
                 $this->UserToObject->Save();
                 $this->SaveUsersProfile();
                 $this->SaveProfileSecuritySettings();
+            }else{
+                echo $this->restriction::USER_ALREADY_EXISTS;
             }
         }
     }

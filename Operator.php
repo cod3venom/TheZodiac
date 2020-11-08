@@ -2,6 +2,7 @@
     require_once 'Kernel/Includes/BootLoader.php';
 
     use Kernel\Classes\Auth\Account\InitAccount;
+    use Kernel\Classes\Auth\Account\InitAuth;
     use Kernel\Classes\Data\Objects\PlansToObject;
     use Kernel\Classes\Security\ImportIO;
     use Kernel\Classes\Security\Antihacker;
@@ -9,7 +10,7 @@
     use Kernel\Classes\Security\Restrictions;
 
 
-$initAccount = new InitAccount();
+    $initAccount = new InitAccount();
     $antiHacker = new Antihacker();
 
 
@@ -17,9 +18,11 @@ $initAccount = new InitAccount();
         $antiHacker->PostSecurityFilter();
         $initAccount->Add();
     }
-    if(isset($_POST["SignUp"]) && isset($_POST["Email"]) && isset($_POST["Password"])){
+    if(isset($_POST['SignIn'])){
         $antiHacker->PostSecurityFilter();
+
     }
+
     if(isset($_POST['Update'])){
         $initAccount->Update();
     }

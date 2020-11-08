@@ -44,7 +44,20 @@ class UsersToObject extends MySql implements UserToObjectimpl
         }
     }
 
+    public function InitializeBy($email){
+        $this->CreateStatement(15);
+        $this->stmt->bind_param('s',$email);
+        $Result = $this->Select();
+        foreach ($Result as $object){
+            $this->ID = $object['ID'];
+            $this->setUserId($object['USER_ID']);
+            $this->setUserEmail($object['USER_EMAIL']);
+            $this->USER_PASSWORD = $object['USER_PASSWORD'];
+            $this->setUserLevel($object['USER_LEVEL']);
+            $this->DATE = $object['DATE'];
 
+        }
+    }
     public function getId(){return $this->ID;}
 
     public function getUserId(){return $this->USER_ID;}
