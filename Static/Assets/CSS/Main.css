@@ -29,6 +29,11 @@ html, body{
     position:               relative;
     background:             var(--bgDark);
 }
+.DarkBody{
+    width: 100%;
+    height: 100vh;
+    background:             var(--bgDark);
+}
 
 a{
     text-decoration:        none;

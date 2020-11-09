@@ -21,6 +21,11 @@ class Route
             return true;
         }
     }
+    public static function ActivationPage(){
+        if(isset($_GET['ActivateWithKey'])){
+            return true;
+        }
+    }
     public static function GET($key){
         if(isset($_GET[$key])){
             self::$STACK[$key] = $_GET[$key];
@@ -43,6 +48,10 @@ class Route
 
     public static function ReadPost($key){
         return self::$STACK[$key];
+    }
+
+    public function Navigate($address){
+        header("Location:".$address);
     }
 
 

@@ -30,6 +30,7 @@ create table USER_SECURITY
     USER_ID         varchar(100)           not null,
     USER_EMAIL      varchar(250)           not null,
     USER_STATUS     int(1)                 not null,
+    ACCOUNT_STATUS  int(1)                 not null,
     USER_RECOVERY   varchar(250)           null,
     USER_IP         varchar(50)            not null,
     USER_COUNTRY    varchar(50)            not null

@@ -20,10 +20,11 @@ class UserSecurityToObject extends MySql implements UserToObjectimpl
     private $USER_ID = 'USER_ID';
     private $USER_EMAIL = 'USER_EMAIL';
     private $USER_STATUS = 'USER_STATUS';
+    private $ACTIVATION_STATUS = 'ACTIVATION_STATUS';
     private $USER_RECOVERY = 'USER_RECOVERY';
     private $USER_IP = 'USER_IP';
     private $USER_COUNTRY = 'USER_COUNTRY';
-
+    private $MAIL_STATUS = 0;
     public function __construct()
     {
         parent::__construct();
@@ -61,6 +62,9 @@ class UserSecurityToObject extends MySql implements UserToObjectimpl
     public function getStatus(){return $this->USER_STATUS;}
     public function setStatus($status){$this->USER_STATUS = $status;}
 
+    public function getActivationStatus(){return $this->ACTIVATION_STATUS;}
+    public function setActivationStatus($status){$this->ACTIVATION_STATUS = $status;}
+
     public function getUserRecovery(){return $this->USER_RECOVERY;}
     public function setUserRecovery($recovery){$this->USER_RECOVERY = $recovery;}
     public function generateRecovery(){$this->USER_RECOVERY = md5(microtime());}
@@ -76,9 +80,13 @@ class UserSecurityToObject extends MySql implements UserToObjectimpl
             $this->USER_COUNTRY = 'PL';
         }
     }
+
+    public function getMailStatus(){return $this->MAIL_STATUS;}
+    private function setMailStatus($status){$this->MAIL_STATUS = (int)$status;}
+
     public function Save(){
          $this->CreateStatement(7);
-         $this->stmt->bind_param('ssssss', $this->USER_ID, $this->USER_EMAIL, $this->USER_STATUS, $this->USER_RECOVERY,$this->USER_IP, $this->USER_COUNTRY);
+         $this->stmt->bind_param('sssssss', $this->USER_ID, $this->USER_EMAIL, $this->USER_STATUS, $this->ACTIVATION_STATUS, $this->USER_RECOVERY,$this->USER_IP, $this->USER_COUNTRY);
          $this->Insert();
          if($this->INSERT_STATUS === 1){
              $this->SendActivationKey();
@@ -90,27 +98,37 @@ class UserSecurityToObject extends MySql implements UserToObjectimpl
         $mail = new PHPMailer(true);
         try
         {
-            $mail->SMTPDebug = SMTP::DEBUG_SERVER;
-            $mail->isSMTP();
-            $mail->SMTPAuth = true;
+            //$mail->SMTPDebug = 4;
+            $mail->isSMTP(true); // telling the class to use SMTP
+            $mail->SMTPOptions = array(
+                'ssl' => array(
+                    'verify_peer' => false,
+                    'verify_peer_name' => false,
+                    'allow_self_signed' => true
+                )
+            );
             $mail->SMTPSecure = 'ssl';
-            $mail->Host = 'smtp.gmail.com';
-            $mail->Port = '465';
-            $mail->isHTML();
-            $mail->Username = 'llekatyan@gmail.com';
-            $mail->Password = 'Networks0013';
+            $mail->Host = 'serwer2077094.home.pl ';
+            $mail->Port = 465;
+            $mail->SMTPAuth = true;
+            $mail->Username = "dev@rootsconnector.com";
+            $mail->Password = "dev112it.pl";
 
-            $mail->setFrom('llekatyan@gmail.com', 'Sender Name');
+
+            $mail->setFrom('dev@rootsconnector.com', 'Sender Name');
             $mail->addAddress($this->getEmail(), 'Receiver Name');
-            $mail->addReplyTo('llekatyan@gmail.com', 'Sender Name');
+            $mail->addReplyTo('dev@rootsconnector.com', 'Sender Name');
             $mail->Subject = 'TheZodiac Activation';
             $mail->Body = 'YOUR Activation KEY IS '.$this->getUserRecovery();
             $mail->send();
+            $this->setMailStatus(Restrictions::TRUE);
             echo "mail was  successfully sent to the" .$this->getEmail();
         }
         catch (Exception $ex)
         {
             echo "error ".PHP_EOL.$ex;
+        } finally {
+            return $this->getMailStatus();
         }
     }
 }

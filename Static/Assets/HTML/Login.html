@@ -14,15 +14,15 @@
 
 <body class="Centered">
 <div id="loginBoard">
-    <div class="zodiacLogo">
+    <div class="zodiacLogo Centered">
         <img src="Static/Assets/IMG/ZodiacLoginLogo.png">
     </div>
     <div class="Status">
 
     </div>
-    <div class="Registration Centered">
-        <form id="RegisterForm" action="Operator.php" method="POST">
-            <input type="hidden" name="SignUp">
+    <div class="LoginContainer Centered">
+        <form id="LoginForm" action="Operator.php" method="POST">
+            <input type="hidden" name="SignIn">
             <div class="step" id="MainStep">
                 <div class="TextBox Relative">
                     <input type="email" name="Email" placeholder="EMAIL[0];" required>
@@ -35,7 +35,7 @@
                 <div class="Block">
                     <button id="SignUpBtn" class="submitbtn" type="submit">BTN[0];</button>
                 </div>
-                <div class="Block Tall Vertically">
+                <div class="Block Tall Vertically Question">
                         <span>
                             NOT_REGISTERED[0];
                             <a href="/">REGISTRATION[0];</a>

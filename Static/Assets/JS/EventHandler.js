@@ -17,14 +17,12 @@ $("#RegisterNextBtn0").click(function (e){
 
         html.AddAttribute($('#slideNavigation'), 'style', 'display:flex;');
         html.Appendclass($('#slideNavigation'), 'Centered');
-
         slider.hideStep('#MainStep');
         slider.showStep('#step_slider', '');
         slider.showStep('#slider_0', '');
         slider.setActualSlider('0');
-        slider.addFooter(3)
+        slider.addFooter(2)
         slider.notActive('#dot_1');
-        slider.notActive('#dot_2');
 
     }
 });
@@ -41,6 +39,7 @@ $('#NavigationNext').click(function (){
         }
         else
         {
+
             slider.hideStep(slider.getActualSlider());
             slider.showStep('#slider_1','');
             slider.setActualSlider('1');
@@ -48,26 +47,12 @@ $('#NavigationNext').click(function (){
             slider.setActive('#dot_1');
             slider.notActive('#dot_0');
             slider.notActive('#dot_2');
+            //flag.NEXT_BTN.attr('type','submit');
         }
 
         return;
     }
-    if(slider.getActualId() === 'slider_1'){
-        if(flag.FILE_INPUT.val() === flag.EMPTY){
-            flag.AVATAR_PLACEHOLDER.css("border","1px solid "+flag.ERROR_COLOR);
-        }
-        else
-        {
-            slider.hideStep(slider.getActualSlider());
-            slider.showStep('#slider_2','');
-            slider.setActualSlider('2');
 
-            slider.setActive('#dot_2');
-            slider.notActive('#dot_0');
-            slider.notActive('#dot_1');
-        }
-        return;
-    }
     if(slider.getActualId() === 'slider_3'){
         html.AddAttribute($('#slider_4'),'style','display:flex;');
         html.Appendclass($('#slider_4'),'Centered');

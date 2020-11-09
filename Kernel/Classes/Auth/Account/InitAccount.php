@@ -10,6 +10,8 @@ use Kernel\Classes\Data\Objects\UsersProfileToObject;
 use Kernel\Classes\Security\Restrictions;
 use Kernel\Classes\Security\ImportIO;
 use Kernel\Classes\Data\Objects\UsersToObject;
+use Kernel\Classes\Security\Route;
+use Kernel\Classes\Security\Session;
 
 class InitAccount extends MySql implements DataActionsimp
 {
@@ -18,15 +20,17 @@ class InitAccount extends MySql implements DataActionsimp
     private $UserSecurity;
     private $UserPlan;
     private $UserToObject;
+    private $session;
     public function  __construct()
     {
         parent::__construct();
         $this->restriction = new restrictions();
         $this->UserToObject = new UsersToObject();
-
+        $this->Route = new Route();
         $this->UserProfile = new UsersProfileToObject();
         $this->UserSecurity = new UserSecurityToObject();
         $this->UserPlan = new UserPlanToObject();
+        $this->session = new Session();
     }
 
     public function Exists($param)
@@ -75,12 +79,32 @@ class InitAccount extends MySql implements DataActionsimp
         $this->UserSecurity->setUserId($this->UserToObject->getUserId());
         $this->UserSecurity->setEmail($this->UserToObject->getUserEmail());
         $this->UserSecurity->setStatus($this->restriction::USER_NOT_BLOCKED);
+        $this->UserSecurity->setActivationStatus($this->restriction::USER_NOT_ACTIVE);
         $this->UserSecurity->generateRecovery();
         $this->UserSecurity->setUserIP($this->UserToObject->getUserIP());
         $this->UserSecurity->setUserCountry();
-        $this->UserSecurity->Save();
+        $status = $this->UserSecurity->Save();
+        if($status === Restrictions::TRUE){
+           if($this->UserSecurity->getMailStatus() === Restrictions::TRUE){
+               $this->CreateSession();
+               $this->Route->Navigate(Restrictions::ACTIVATION_PAGE);
+           }
+        }
     }
 
+
+    public function CompareActivationKey(){
+        if(isset($_POST['ActivationCode'])){
+            $this->UserSecurity->Initialize($_SESSION['USER_ID']);
+            $Code =  $_POST['ActivationCode'];
+            $Actual = $this->UserSecurity->getUserRecovery();
+            if($Code === $Actual){
+                echo "Activated";
+            }else{
+                echo "wrong key";
+            }
+        }
+    }
     public function SaveUserPlan(){
         if(isset($_POST['PlanType'])){
             $PlanType = (int)$_POST['PlanType'];
@@ -137,8 +161,9 @@ class InitAccount extends MySql implements DataActionsimp
     {
 
     }
-    public  function debug($pre,$data){
-        echo $pre."==".$data.'<br/>';
+
+    private function CreateSession(){
+        $this->session->session_add('USER_ID', $this->UserToObject->getUserId());
     }
 
 

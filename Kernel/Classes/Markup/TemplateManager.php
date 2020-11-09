@@ -52,4 +52,10 @@ class TemplateManager extends Bundle
             echo $html;
         }
     }
+    public function ProfileActivationPage(){
+        $html = $this->getHtml();
+        if(!empty($html)){
+            echo $html;
+        }
+    }
 }

@@ -6,6 +6,8 @@ namespace Kernel\Classes\Auth\Account;
 
 use Kernel\Classes\Data\MySql;
 use Kernel\Classes\Data\Objects\UserSecurityToObject;
+use Kernel\Classes\Security\Restrictions;
+use Kernel\Classes\Security\Session;
 
 class initAuth extends MySql
 {
@@ -16,6 +18,7 @@ class initAuth extends MySql
     private $DBPASSWORDHASH;
     private $USER_ACTIVATION_CODE;
     private $USER_ID;
+    private $session;
 
 
     public function getEmail(){return $this->Email;}
@@ -43,6 +46,7 @@ class initAuth extends MySql
     {
         parent::__construct();
         $this->UserSecurity = new UserSecurityToObject();
+        $this->session = new Session();
     }
 
 
@@ -66,8 +70,12 @@ class initAuth extends MySql
 
         if(password_verify($this->getEnteredPassword(), $this->getDbPasswordHash())){
             $this->GetSecurityAssets();
-            if($this->UserSecurity->getUserS)
-            echo "loggedin";
+            if($this->UserSecurity->getStatus() !== Restrictions::USER_IS_BLOCKED){
+                $this->CreateSession();
+                echo Restrictions::LOGGED_IN_SUCCESSFULLY_TXT;
+            }else{
+                echo Restrictions::USER_IS_BLOCKED_TXT;
+            }
         }else{
             echo "cant login";
         }
@@ -79,6 +87,9 @@ class initAuth extends MySql
             $this->setEnteredPassword($_POST['Password']);
             $this->CheckAuth();
         }
+    }
+    private function CreateSession(){
+        $this->session->session_add('USER_ID', $this->getUserId());
     }
 
 }

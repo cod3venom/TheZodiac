@@ -7,7 +7,8 @@ namespace Kernel\Classes\Security;
 class Restrictions
 {
 
-
+    CONST TRUE = 1;
+    CONST FALSE = 0;
     /*
     * USER LEVELS
     */
@@ -27,6 +28,9 @@ class Restrictions
     /*
     * USER ACCOUNT STATUS
     */
+    CONST LOGGED_IN_SUCCESSFULLY_TXT = 'LOGGED_IN_SUCCESSFULLY';
+    CONST USER_NOT_ACTIVE = 0;
+    CONST USER_IS_ACTIVATED = 1;
     CONST USER_NOT_BLOCKED=0;
     CONST USER_IS_BLOCKED=1;
     CONST USER_IS_BLOCKED_TXT = 'USER_IS_BLOCKED';
@@ -91,4 +95,10 @@ class Restrictions
     CONST CSS_FOLDER = 'Static/Assets/CSS/';
     CONST JS_FOLDER  = 'Static/Assets/JS/';
     CONST IMG_FOLDER = 'Static/Assets/IMG/';
+
+
+    /*
+     * PHP PAGES
+     */
+    CONST ACTIVATION_PAGE = 'index.php?ActivateWithKey';
 }
