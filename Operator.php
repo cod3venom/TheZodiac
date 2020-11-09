@@ -19,8 +19,8 @@
         $initAccount->Add();
     }
     if(isset($_POST['SignIn'])){
-        $antiHacker->PostSecurityFilter();
-
+        $auth = new InitAuth();
+        $auth->Auth();
     }
 
     if(isset($_POST['Update'])){

@@ -13,7 +13,7 @@ class QueryFactory extends FileSystem
     }
 
 
-    public function QueryFactory($num)
+    public function GetQuery($num)
     {
         $Content = $this->readFile($this->restriction::QUERIES);
         if(strpos($Content, $this->restriction::NEWLINE)!==false && strpos($Content, $this->restriction::DOLLAR)){

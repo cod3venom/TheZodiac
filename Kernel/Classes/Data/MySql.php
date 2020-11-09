@@ -24,8 +24,7 @@ class MySql extends DBUtill
     }
 
     public function CreateStatement($num){
-        $query = $this->QueryFactory->QueryFactory($num);
-        $this->JSDebug(1,$query);
+        $query = $this->QueryFactory->GetQuery($num);
         if($this->Connection && !empty($query)){
             $this->stmt = mysqli_stmt_init($this->Connection);
             if(!$this->stmt->prepare($query)){
