@@ -23,7 +23,6 @@
     if(isset($_POST['SignIn'])){
         $auth = new InitAuth();
         $auth->Auth();
-        echo $_SESSION['USER_ID'];
     }
 
     if(isset($_POST['Update'])){

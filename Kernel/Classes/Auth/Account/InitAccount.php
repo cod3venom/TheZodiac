@@ -52,6 +52,7 @@ class InitAccount extends MySql implements DataActionsimp
             $this->UserToObject->generateUserId();
             $this->UserToObject->setUserLevel($this->restriction::USER);
             $this->UserToObject->setUserIP('127.0.0.1');
+
             if($this->Exists($this->UserToObject->getUserId()) === false){
                 $this->UserToObject->Save();
                 $this->SaveUsersProfile();

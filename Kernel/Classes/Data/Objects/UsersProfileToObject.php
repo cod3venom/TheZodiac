@@ -15,7 +15,7 @@ class UsersProfileToObject extends MySql implements  UserToObjectimpl
     private $USER_LASTNAME = 'USER_LASTNAME';
     private $USER_AVATAR = 'USER_AVATAR';
     private $USER_GENDER = 'USER_GENDER';
-    private $USER_BIRTHDAY = 'USER_BIRTHDAY';
+    private $USER_BIRTHDATE;
 
     public function __construct(){
         parent::__construct();
@@ -28,11 +28,11 @@ class UsersProfileToObject extends MySql implements  UserToObjectimpl
         $this->stmt->bind_param('s',$USER_ID);
         $Result = $this->Select();
         foreach ($Result as $object){
-            $this->USER_FIRSTNAME = $object[$this->USER_FIRSTNAME];
-            $this->USER_LASTNAME = $object[$this->USER_LASTNAME];
-            $this->USER_AVATAR = $object[$this->USER_AVATAR];
-            $this->USER_GENDER = $object[$this->USER_GENDER];
-            $this->USER_BIRTHDAY = $object[$this->USER_BIRTHDAY];
+            $this->USER_FIRSTNAME = $object['USER_FIRSTNAME'];
+            $this->USER_LASTNAME = $object['USER_LASTNAME'];
+            $this->USER_AVATAR = $object['USER_AVATAR'];
+            $this->USER_GENDER = $object['USER_GENDER'];
+            $this->USER_BIRTHDATE = $object['USER_BIRTHDATE'];
 
         }
     }
@@ -52,12 +52,12 @@ class UsersProfileToObject extends MySql implements  UserToObjectimpl
     public function getUserGender(){return $this->USER_GENDER;}
     public function setUserGender($gender){$this->USER_GENDER = $gender;}
 
-    public function getUserBirthday(){return $this->USER_BIRTHDAY;}
-    public function setUserBirthday($birthday){$this->USER_BIRTHDAY = $birthday;}
+    public function getUserBirthday(){return $this->USER_BIRTHDATE;}
+    public function setUserBirthday($birthday){$this->USER_BIRTHDATE = $birthday;}
 
     function Save(){
         $this->CreateStatement(4);
-        $this->stmt->bind_param("ssssss",$this->USER_ID, $this->USER_FIRSTNAME, $this->USER_LASTNAME, $this->USER_AVATAR, $this->USER_GENDER, $this->USER_BIRTHDAY);
+        $this->stmt->bind_param("ssssss",$this->USER_ID, $this->USER_FIRSTNAME, $this->USER_LASTNAME, $this->USER_AVATAR, $this->USER_GENDER, $this->USER_BIRTHDATE);
         $this->Insert();
         return $this->INSERT_STATUS;
 

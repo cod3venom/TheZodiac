@@ -38,11 +38,11 @@ class UserSecurityToObject extends MySql implements UserToObjectimpl
         $this->stmt->bind_param('s',$USER_ID);
         $Result = $this->Select();
         foreach ($Result as $object){
-            $this->setEmail([$this->USER_EMAIL]);
-            $this->setStatus($object[$this->USER_STATUS]);
-            $this->setUserRecovery($object[$this->USER_RECOVERY]);
-            $this->setUserIP($object[$this->USER_IP]);
-            $this->setUserCountry($object[$this->USER_COUNTRY]);
+            $this->setEmail($this->USER_EMAIL);
+            $this->setStatus($object['USER_STATUS']);
+            $this->setUserRecovery($object['USER_RECOVERY']);
+            $this->setUserIP($object['USER_IP']);
+            $this->setUserCountry($object['USER_COUNTRY']);
         }
     }
 

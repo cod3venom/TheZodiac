@@ -31,6 +31,11 @@ class TemplateManager extends Bundle
             $html = str_replace("TERMS[3];",$this->getString(9),$html);
             $html = str_replace("TERMS[4];",$this->getString(10),$html);
 
+            $html = str_replace("FIRSTNAME[0];",$this->getString(12),$html);
+            $html = str_replace("LASTNAME[0];",$this->getString(13),$html);
+            $html = str_replace("GENDER[0];",$this->getString(14),$html);
+            $html = str_replace("NEXT[0];",$this->getString(15),$html);
+            $html = str_replace("ADD_AVATAR[0[0];",$this->getString(16),$html);
             echo $html;
         }
     }

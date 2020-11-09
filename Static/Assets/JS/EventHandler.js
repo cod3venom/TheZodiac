@@ -33,26 +33,35 @@ $('#NavigationNext').click(function (){
     if(slider.getActualId() === 'slider_0'){
         if(flag.TEXT_INPUT.val() === flag.EMPTY){
             flag.TEXT_INPUT.css("border","1px solid "+flag.ERROR_COLOR);
+            return;
         }
         else if(flag.DATE_INPUT.val() === flag.EMPTY){
             flag.DATE_INPUT.css("border","1px solid "+flag.ERROR_COLOR);
+            return;
         }
         else
         {
-
             slider.hideStep(slider.getActualSlider());
             slider.showStep('#slider_1','');
             slider.setActualSlider('1');
 
             slider.setActive('#dot_1');
             slider.notActive('#dot_0');
-            slider.notActive('#dot_2');
-            //flag.NEXT_BTN.attr('type','submit');
+            return;
         }
 
         return;
     }
-
+    if(slider.getActualId() === 'slider_1'){
+        if(flag.FILE_INPUT.val() === flag.EMPTY){
+            flag.DATE_INPUT.css("border","1px solid "+flag.ERROR_COLOR);
+            return;
+        }
+        else{
+         flag.NEXT_BTN.attr('type','submit');
+     }
+        return ;
+    }
     if(slider.getActualId() === 'slider_3'){
         html.AddAttribute($('#slider_4'),'style','display:flex;');
         html.Appendclass($('#slider_4'),'Centered');
