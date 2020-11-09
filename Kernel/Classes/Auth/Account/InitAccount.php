@@ -158,13 +158,20 @@ class InitAccount extends MySql implements DataActionsimp
         $securityUserIp, $securityCountry,$UID);
         $this->Insert();
     }
-    public function Load()
-    {
-
+    private function CreateSession(){
+        $this->UserProfile = new UsersProfileToObject();
+        $this->UserProfile->Initialize($this->UserToObject->getUserId());
+        $this->session->session_add('USER_ID', $this->UserToObject->getUserId());
+        $this->session->session_add('USER_FIRSTNAME', $this->UserProfile->getUserFirstname());
+        $this->session->session_add('USER_LASTNAME', $this->UserProfile->getUserLastname());
+        $this->session->session_add('USER_GENDER', $this->UserProfile->getUserGender());
+        $this->session->session_add('USER_BIRTHDATE', $this->UserProfile->getUserBirthday());
+        $this->Load();
     }
 
-    private function CreateSession(){
-        $this->session->session_add('USER_ID', $this->UserToObject->getUserId());
+    public function  Load(){
+        header('Content-Type: application/json');
+        echo json_encode($_SESSION,JSON_PRETTY_PRINT);
     }
 
 

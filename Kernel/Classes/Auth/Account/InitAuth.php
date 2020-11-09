@@ -91,7 +91,7 @@ class initAuth extends MySql
             $this->CheckAuth();
         }
     }
-    private function CreateSession(){
+    public function CreateSession(){
         $this->UserProfile = new UsersProfileToObject();
         $this->UserProfile->Initialize($this->getUserId());
         $this->session->session_add('USER_ID', $this->getUserId());
@@ -102,7 +102,7 @@ class initAuth extends MySql
         $this->Load();
     }
 
-    private function  Load(){
+    public function  Load(){
         header('Content-Type: application/json');
         echo json_encode($_SESSION,JSON_PRETTY_PRINT);
     }
