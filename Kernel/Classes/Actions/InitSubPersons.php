@@ -12,7 +12,7 @@ use Kernel\Classes\Security\ImportIO;
 use Kernel\Classes\Security\Restrictions;
 use Kernel\Classes\Security\Route;
 use Kernel\Classes\Security\Session;
-
+use Kernel\Classes\DataOperations\JSON;
 class InitSubPersons extends MySql
 {
     private $restriction;
@@ -109,10 +109,26 @@ class InitSubPersons extends MySql
 
         }
     }
+    public function Delete(){
+        if(isset($_POST['PersonID'])){
+            $this->SubUser->setPersonId($_POST['PersonID']);
+            $this->SubUser->setUserId($_SESSION['USER_ID']);
+            $this->SubUser->Remove();
+            echo $this->SubUser->toJson();
+        }
+    }
     public function getByPersonId(){
         if(isset($_POST['PersonID'])){
             $this->SubUser->Initialize($_POST['PersonID']);
             echo $this->SubUser->toJson();
+        }
+    }
+    public function getAllByOwner(){
+        $json = new JSON();
+        $this->SubUser->setUserId($_SESSION['USER_ID']);
+        $Result = $this->SubUser->getAllByOwner();
+        foreach ($Result as $data){
+             echo $json->PrettyConverter($data);
         }
     }
 }

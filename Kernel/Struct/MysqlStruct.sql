@@ -44,7 +44,7 @@ create table PERSON_WORLDS
 (
     ID                             int auto_increment primary key,
     USER_ID                     varchar(100) not null,
-    PERSONS_ID                     varchar(100) not null,
+    PERSON_ID                     varchar(100) not null,
     PERSON_ACTION                varchar(50)  not null,
     PERSON_FUN                  varchar(50)  not null,
     PERSON_SEEK                  varchar(50)  not null,
@@ -53,11 +53,10 @@ create table PERSON_WORLDS
     PERSON_CAREER                  varchar(50)  not null,
     PERSON_INFORMATION                  varchar(50)  not null,
     PERSON_RELATIONS                  varchar(50)  not null,
-    PERSON_Future                  varchar(50)  not null,
+    PERSON_FUTURE                  varchar(50)  not null,
     PERSON_FEELING                  varchar(50)  not null,
     PERSON_DESIRE                  varchar(50)  not null,
     PERSON_SPIRITUAL                  varchar(50)  not null,
-    PLAN_TYPE                        int(1)                  not null,
     DATE          timestamp default current_timestamp() not null on update current_timestamp()
 );
 

@@ -66,6 +66,16 @@ class MySql extends DBUtill
             }
         }
     }
+    public function Delete(){
+        if($this->stmt){
+            if($this->stmt->execute()){
+                $this->SELECT_STATUS = 1;
+            }else{
+                $this->SELECT_STATUS = 0;
+            }
+        }
+    }
+
 
     public function Count(){
         if($this->stmt){

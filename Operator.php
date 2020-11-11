@@ -58,7 +58,15 @@
             $antiHacker->PostSecurityFilter();
             $subUsers->Update();
         }
+        if(isset($_POST['DeleteSubPerson'])){
+            $antiHacker->PostSecurityFilter();
+            $subUsers->Delete();
+        }
+        if(isset($_POST['GetAllSubPersons'])){
+            $antiHacker->PostSecurityFilter();
+            $subUsers->getAllByOwner();
+        }
 
-    }
+        }
 
 

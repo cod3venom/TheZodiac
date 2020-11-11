@@ -25,7 +25,13 @@ class Bundle extends Restrictions
     }
 
     public function getCurrentlanguage(){
-        $Language = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+        $Language  = '';
+        if(isset($_SERVER['HTTP_ACCEPT_LANGUAGE']))
+        {
+            $Language = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+        }else{
+            $Language = 'en';
+        }
         foreach (self::ACCEPTED_LANGUAGES as $ActualLanguage){
             if($ActualLanguage === $Language){
                 $this->setSelectedBundle($Language);

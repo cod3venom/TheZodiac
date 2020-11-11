@@ -11,7 +11,6 @@ namespace Kernel\Classes\Data\Objects;
 
 use Kernel\Classes\Data\MySql;
 use Kernel\Classes\Security\Restrictions;
-
 //@Table=SUB_PERSONS
 
 class SubUsersToObject extends MySql implements UserToObjectimpl
@@ -50,14 +49,7 @@ class SubUsersToObject extends MySql implements UserToObjectimpl
 
         }
     }
-    public function getAllByOwner(){
-        $USER_ID = $this->getUserId();
-        if(!empty($USER_ID)){
-            $this->CreateStatement(17);
-            $this->stmt->bind_param('s',$USER_ID);
-            return $this->Select();
-        }
-    }
+
     public function getUserId(){return $this->USER_ID;}
     public function setUserId($userid){$this->USER_ID=$userid;}
 
@@ -198,6 +190,22 @@ class SubUsersToObject extends MySql implements UserToObjectimpl
         $this->Insert();
         return $this->INSERT_STATUS;
     }
+    public function Remove(){
+        $this->CreateStatement(20);
+        $this->stmt->bind_param("ss", $this->PERSON_ID, $this->USER_ID);
+        $this->Delete();
+        return $this->INSERT_STATUS;
+    }
+
+    public function getAllByOwner(){
+        $USER_ID = $this->getUserId();
+        if(!empty($USER_ID)){
+            $this->CreateStatement(23);
+            $this->stmt->bind_param('s',$USER_ID);
+            return $this->Select();
+        }
+    }
+
     private function Die(){
         exit(0);
     }
