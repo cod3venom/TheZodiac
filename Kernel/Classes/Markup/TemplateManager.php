@@ -1,5 +1,11 @@
 <?php
 
+/*
+ * TheZodiac
+ * @author Levan Ostrowski
+ * @project TheZodiac
+ */
+
 
 namespace Kernel\Classes\Markup;
 
@@ -60,6 +66,15 @@ class TemplateManager extends Bundle
     public function ProfileActivationPage(){
         $html = $this->getHtml();
         if(!empty($html)){
+            echo $html;
+        }
+    }
+    public function MyProfilePage(){
+        $html = $this->getHtml();
+        if(!empty($html)){
+            $html = str_replace("DIGNITY[0];",$_SESSION['USER_FIRSTNAME'] .' '.$_SESSION['USER_LASTNAME'],$html);
+            $html = str_replace("AGE[0];",$_SESSION['USER_BIRTHDATE'],$html);
+            $html = str_replace("GENDER[0];",$_SESSION['USER_GENDER'],$html);
             echo $html;
         }
     }

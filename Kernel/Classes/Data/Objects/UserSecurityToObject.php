@@ -13,6 +13,12 @@ use Kernel\Classes\PHPMailer\SMTP;
 use Kernel\Classes\PHPMailer\Exception;
 
 
+/*
+ * TheZodiac
+ * @author Levan Ostrowski
+ * @project TheZodiac
+ */
+
 //@Table=Customers.USER_SECURITY
 class UserSecurityToObject extends MySql implements UserToObjectimpl
 {

@@ -1,5 +1,11 @@
 <?php
 
+/*
+ * TheZodiac
+ * @author Levan Ostrowski
+ * @project TheZodiac
+ */
+
 
 namespace Kernel\Classes\Security;
 
@@ -25,7 +31,7 @@ class ImportIO extends Restrictions
 
     public function __construct($import){
         if(!empty($import)){
-            $this->FILE_UPLOAD_DIR = $_SERVER['DOCUMENT_ROOT'] .'/TheZodiac/Drive/';
+            $this->FILE_UPLOAD_DIR = $_SERVER['DOCUMENT_ROOT'] .'/Drive/';
             $this->setFile($import);
             $this->setFileName($import[self::IMPORT][self::NAME]);
             $this->setFileTmpName($import[self::IMPORT][self::TMP_NAME]);

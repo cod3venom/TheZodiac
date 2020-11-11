@@ -1,5 +1,11 @@
 <?php
 
+/*
+ * TheZodiac
+ * @author Levan Ostrowski
+ * @project TheZodiac
+ */
+
 namespace Kernel\Classes\Auth\Account;
 
 use Kernel\Classes\Data\MySql;
@@ -21,6 +27,7 @@ class InitAccount extends MySql implements DataActionsimp
     private $UserPlan;
     private $UserToObject;
     private $session;
+    private $Route;
     public function  __construct()
     {
         parent::__construct();
@@ -170,6 +177,7 @@ class InitAccount extends MySql implements DataActionsimp
     }
 
     public function  Load(){
+        $this->Route->Navigate(Restrictions::MYPROFILE);
         header('Content-Type: application/json');
         echo json_encode($_SESSION,JSON_PRETTY_PRINT);
     }

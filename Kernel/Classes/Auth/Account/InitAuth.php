@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * TheZodiac
+ * @author Levan Ostrowski
+ * @project TheZodiac
+ */
 
 namespace Kernel\Classes\Auth\Account;
 
@@ -9,6 +14,7 @@ use Kernel\Classes\Data\Objects\UserSecurityToObject;
 use Kernel\Classes\Data\Objects\UsersProfileToObject;
 use Kernel\Classes\Data\Objects\UsersToObject;
 use Kernel\Classes\Security\Restrictions;
+use Kernel\Classes\Security\Route;
 use Kernel\Classes\Security\Session;
 
 class initAuth extends MySql
@@ -22,7 +28,7 @@ class initAuth extends MySql
     private $USER_ACTIVATION_CODE;
     private $USER_ID;
     private $session;
-
+    private $Route;
 
     public function getEmail(){return $this->Email;}
     public function setEmail($email){
@@ -50,6 +56,7 @@ class initAuth extends MySql
         parent::__construct();
         $this->UserSecurity = new UserSecurityToObject();
         $this->session = new Session();
+        $this->Route = new Route();
     }
 
 
@@ -103,6 +110,7 @@ class initAuth extends MySql
     }
 
     public function  Load(){
+        $this->Route->Navigate(Restrictions::MYPROFILE);
         header('Content-Type: application/json');
         echo json_encode($_SESSION,JSON_PRETTY_PRINT);
     }

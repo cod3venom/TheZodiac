@@ -1,6 +1,13 @@
 <?php
 
 
+/*
+ * TheZodiac
+ * @author Levan Ostrowski
+ * @project TheZodiac
+ */
+
+
 namespace Kernel\Classes\Security;
 
 
@@ -71,6 +78,7 @@ class Restrictions
     CONST STAR = '*';
     CONST NEWLINE = '\n';
     CONST DOLLAR = '$';
+    CONST EMPTY_SIGN = '~';
 
     /*
      * QUERY FACTORY BUNDLER
@@ -101,4 +109,31 @@ class Restrictions
      * PHP PAGES
      */
     CONST ACTIVATION_PAGE = 'index.php?ActivateWithKey';
+    CONST MYPROFILE = 'index.php';
+
+
+    /*
+     *HUMAN DIGNITY CONSTANTS
+     */
+
+    CONST MAX_NAME_SIZE = 3;
+    CONST MAX_DAY_SIZE = 2;
+    CONST MAX_MONTH_SIZE = 2;
+    CONST MAX_YEAR_SIZE = 4;
+
+    CONST TOO_LONG_NAME_TXT = 'TOO_LONG_FIRSTNAME';
+    CONST TOO_LONG_LASTNAME_TXT = 'TOO_LONG_LASTNAME';
+
+    CONST TOO_LONG_DAY_TXT = 'TOO_LONG_DAY';
+    CONST TOO_LONG_MONTH_TXT = 'TOO_LONG_MONTH';
+
+    CONST TOO_LONG_YEAR_TXT = 'TOO_LONG_YEAR';
+    CONST TOO_SHORT_YEAR_TXT = 'TOO_SHORT_YEAR';
+
+    CONST TOO_LONG_HOUR_TXT  = 'TOO_LONG_HOUR';
+
+    CONST GENDER_MAN = 'Male';
+    CONST GENDER_WOMAN = 'Female';
+    CONST NO_GENDER_TXT = 'CHOOSE_CORECT_GENDER';
+
 }

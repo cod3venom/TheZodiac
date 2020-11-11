@@ -1,4 +1,12 @@
 <?php
+
+/*
+ * TheZodiac
+ * @author Levan Ostrowski
+ * @project TheZodiac
+ */
+
+
 namespace Kernel\Classes\Data;
 
 use Kernel\Classes\Security\FileSystem;

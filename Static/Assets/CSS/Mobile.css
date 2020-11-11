@@ -348,7 +348,10 @@
         bottom: 2.5rem;
         margin:0 auto;
     }
-
+    .UserBasicInfo{
+        width: 100%;
+        margin: 0 auto;
+    }
 
     #FinderSearch{
         width: 95%;

@@ -1,5 +1,11 @@
 <?php
 
+/*
+ * TheZodiac
+ * @author Levan Ostrowski
+ * @project TheZodiac
+ */
+
 
 namespace Kernel\Classes\Security;
 use Kernel\Classes\Security\Antihacker;
