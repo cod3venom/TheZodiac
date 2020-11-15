@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="ZodiacUI.css">
+
+</head>
+<script src="ZodiacEnum.js"></script>
+<script src="ZodiacUi.js"></script>
+<script src="Visualizer.js"></script>
+<body onload="WelComePage()">
+
+<script>
+
+    var HTML = new WindowBuilder();
+    var Body = document.getElementsByTagName(Elements.BODY)[0];
+    function WelComePage(){
+        var BackgroundDIV = HTML.createDiv('DarkBackground Centered','','');
+        var BasicPanel =  HTML.createDiv('BasicDiv','','');
+        var ZodiacLogoPanel = HTML.createDiv('ZodiacLogoPanel Centered','','');
+        var ZodiacLogo = HTML.createImage('http://localhost/Static/Assets/IMG/welcomeIconZodiac.png','WelcomeLogo','');
+        var WelcomeTitleDiv = HTML.createDiv('WelcomeTitleDiv Centered','','');
+        var WelComeTitle = HTML.createPARAGRAPH('Odkryj swoją moc','','');
+        ZodiacLogo.width = 269;
+        WelComeTitle.style.marginTop = "30px";
+        WelComeTitle.style.color = '#fff';
+
+        ZodiacLogoPanel.appendChild(ZodiacLogo)
+        BasicPanel.appendChild(ZodiacLogoPanel);
+
+        WelcomeTitleDiv.appendChild(WelComeTitle);
+        BasicPanel.appendChild(WelcomeTitleDiv);
+
+        BackgroundDIV.appendChild(BasicPanel);
+        Body.appendChild(BackgroundDIV);
+
+    }
+</script>
+</body>
+
+

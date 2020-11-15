@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="ZodiacUI.css">
+
+</head>
+<script src="ZodiacEnum.js"></script>
+<script src="ZodiacUi.js"></script>
+<script src="Visualizer.js"></script>
+<body class="DarkBackground" onload="loadSlider()">
+
+<script>
+
+    //@TODO=ALWAYS CREATE CREATE ONE MORE PAGE THAN DOTS, THEN HIDE LAST PAGE AN LAST DOT
+    //@TODO=SO IF YOU WANT TO CREATE TEN PAGES, THEN SET AMOUNT OF PAGES ELEVEN AND AFTER RENDERING REMOVE LAST PAGE
+    var HTML = new WindowBuilder();
+    var Body = document.getElementsByTagName(Elements.BODY)[0];
+    var Slider = new carousel();
+    function  loadSlider(){
+        var Created = Slider.CreateSlider();
+        Slider.setTotalPages(10)
+        Slider.creatDots();
+        Slider.getSliderFooter().className = 'Centered';
+        Slider.getSliderFooter().style.width = '100%';
+        Slider.getSliderFooter().style.position = 'absolute';
+        Slider.getSliderFooter().style.bottom = '15px';
+        Slider.getNextButton().style.position = 'absolute';
+        Slider.getNextButton().style.right = '20px';
+        Slider.getSliderFooter().appendChild(Slider.getNextButton());
+        Body.appendChild(Created);
+        Slider.setActivePage(Slider.getCreatedDotsMap()[0]);
+        Slider.createPages();
+        Slider.ShowPage();
+        Slider.hideDot(9);
+        Slider.removeDOt(9);
+        Slider.RemovePageFromMap(10);
+        Slider.RemovePageRenderer(10);
+     }
+
+</script>
+</body>
+
+
