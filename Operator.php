@@ -62,11 +62,18 @@
             $antiHacker->PostSecurityFilter();
             $subUsers->Delete();
         }
-        if(isset($_POST['GetAllSubPersons'])){
+                                                            //GetAllSubPersons
+        if(isset($_POST['GetAllSubPersons']) || isset($_POST['0f9b1b0a37872ae3f6428160d6470e27'])){//
             $antiHacker->PostSecurityFilter();
             $subUsers->getAllByOwner();
         }
-
+                                                            //LazyLoading
+        if(isset($_POST['LazyLoading']) || isset($_POST['cc0c572dfb9a07e867edb7312b533a71']) && isset($_POST['Start']) && isset($_POST['Limit'])){
+            $antiHacker->PostSecurityFilter();
+            $subUsers->LazyLoading((int)$_POST['Start'], (int)$_POST['Limit']);
         }
+
+
+    }
 
 

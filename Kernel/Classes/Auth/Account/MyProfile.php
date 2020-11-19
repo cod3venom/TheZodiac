@@ -26,10 +26,9 @@ class MyProfile extends MySql
 
     public function Load()
     {
-        $this->template->setHtml($this->html->Load('UserProfileTop'));
+        $this->template->setHtml($this->html->Load('UserProfile'));
         echo $this->template->MyProfilePage();
-//        header('Content-Type: application/json');
-//        echo json_encode($_SESSION,JSON_PRETTY_PRINT);
+
     }
 
 }

@@ -205,6 +205,19 @@ class SubUsersToObject extends MySql implements UserToObjectimpl
             return $this->Select();
         }
     }
+    public function LazyLoading($start,$limit){
+        $USER_ID = $this->getUserId();
+        if(!empty($USER_ID)){
+            $query = $this->QueryFactory->GetQuery(24);
+            $query = str_replace("PARAM[0];",$start,$query);
+            $query = str_replace("PARAM[1];",$limit,$query);
+            echo $query;
+            $this->CreateStatementWithQuery($query);
+            $this->stmt->bind_param('s',$USER_ID);
+            return $this->Select();
+        }
+    }
+
 
     private function Die(){
         exit(0);

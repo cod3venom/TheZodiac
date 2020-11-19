@@ -59,7 +59,7 @@ class Restrictions
     * FILE UPLOAD SETTINGS
     */
     CONST MAX_DOC_SIZE = 50000;
-    CONST MAX_IMG_SIZE = 25000;
+    CONST MAX_IMG_SIZE = 125000;
     CONST TOO_BIG_FILE = 'TOO_BIG_FILE';
     CONST EXTENSIONS = array('xls','csv','png','jpg','jpeg');
 
@@ -99,7 +99,10 @@ class Restrictions
 
     CONST NOT_ALLOWED_CHARS = array('!','#','$','%','^','&','*','(',')','-','_','=','+',';',"'",'"');
     CONST NOT_ALLOWED_PHP   = array('<?','?>', 'php','<?php','<?php', 'system(','shell_exec','ls','dir', 'ls -l', 'chmod', 'chown');
-    CONST HTML_FOLDER = 'Static/Assets/HTML/';
+    CONST HTML_MAIN = 'Static/Assets/HTML/';
+    CONST HTML_AUTH = 'Static/Assets/HTML/Auth/';
+    CONST HTMLPROFILE = 'Static/Assets/HTML/Profile/';
+    CONST HTML_CUSTOM = 'Static/Assets/HTML/Custom/';
     CONST CSS_FOLDER = 'Static/Assets/CSS/';
     CONST JS_FOLDER  = 'Static/Assets/JS/';
     CONST IMG_FOLDER = 'Static/Assets/IMG/';
@@ -135,5 +138,13 @@ class Restrictions
     CONST GENDER_MAN = 'Male';
     CONST GENDER_WOMAN = 'Female';
     CONST NO_GENDER_TXT = 'CHOOSE_CORECT_GENDER';
+
+
+
+
+    /*
+     * LAZY LOADING
+     */
+
 
 }

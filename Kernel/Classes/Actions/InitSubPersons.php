@@ -131,4 +131,12 @@ class InitSubPersons extends MySql
              echo $json->PrettyConverter($data);
         }
     }
+    public function LazyLoading($start,$limit){
+        $json = new JSON();
+        $this->SubUser->setUserId($_SESSION['USER_ID']);
+        $Result = $this->SubUser->LazyLoading($start,$limit);
+        foreach ($Result as $data){
+            echo $json->PrettyConverter($data);
+        }
+    }
 }

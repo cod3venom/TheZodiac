@@ -47,6 +47,19 @@ class MySql extends DBUtill
     }
 
 
+    public function CreateStatementWithQuery($query){
+        if($this->Connection && !empty($query)){
+            $this->stmt = mysqli_stmt_init($this->Connection);
+            if(!$this->stmt->prepare($query)){
+                //@TODO=LOG TO FILE
+                echo $query;
+                echo mysqli_stmt_error($this->stmt);
+            }else{
+                $this->stmt->prepare($query);
+                return $this->stmt;
+            }
+        }
+    }
 
     public function Insert(){
         if($this->stmt){

@@ -23,9 +23,24 @@ class HTML extends Restrictions
     public function Load($name){
         @ob_clean();
         @ob_flush();
-        $path = $this::HTML_FOLDER.$name.'.html';
+        $path = $this::HTML_MAIN.$name.'.html';
         if(file_exists($path)){
             return $this->fSys->readFile($path);
+        }else{
+            $path = $this::HTML_AUTH.$name.'.html';
+            if(file_exists($path)){
+                return $this->fSys->readFile($path);
+            }else{
+                $path = $this::HTMLPROFILE.$name.'.html';
+                if(file_exists($path)){
+                    return $this->fSys->readFile($path);
+                }else{
+                    $path = $this::HTML_CUSTOM.$name.'.html';
+                    if(file_exists($path)){
+                        return $this->fSys->readFile($path);
+                    }
+                }
+            }
         }
     }
 }

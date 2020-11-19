@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Static/Assets/CSS/Colors.css" />
+    <link rel="stylesheet" href="Static/Assets/CSS/Main.css" />
+    <link rel="stylesheet" href="Static/Assets/CSS/Mobile.css" />
+    <link rel="stylesheet" href="Static/Assets/CSS/Tablet.css" />
+    <link rel="stylesheet" href="Static/Assets/CSS/Laptop.css" />
+    <link rel="stylesheet" href="Static/Assets/CSS/Desktop.css" />
+    <link rel="stylesheet" href="Static/Assets/CSS/ZodiacUI.css">
+
+    <title>Title</title>
+</head>
+<script type="text/javascript" src="Static/Assets/JS/Jquery.js"></script>
+<script type="text/javascript" src="Static/Assets/JS/ZodiacEnum.js"></script>
+<script type="text/javascript" src="Static/Assets/JS/ZodiacUi.js"></script>
+<script type="text/javascript" src="Static/Assets/JS/Visualizer.js"></script>
+<style>
+    body{
+        height: 100vh;
+    }
+</style>
+<body class="DarkBackground" onload="loadSlider()">
+    <div id="ProfileContianer">
+        <div class="Block UserWallpaper">
+            <div id="WallpaperMenuPanel"
+                                    style='
+                                                background-image: url("Static/Assets/IMG/ProfileWallpaperIconMobile.png");
+                                                background-size: cover;
+                                                background-repeat: no-repeat;
+                                          '>
+                <div id="TopMenu">
+                    <div id="MenuLogo">
+                        <img src="Static/Assets/IMG/zodiacLogoTopIconMobile.png">
+                    </div>
+                    <div id="ProfileMenu" class="Centered">
+                        <button id="topPlusBtn" class="Centered"><img src="Static/Assets/IMG/addTopIconMobile.png"></button>
+                        <button id="topSearchBtn" class="Centered"><img src="Static/Assets/IMG/searchTopIconMobile.png"></button>
+                        <button id="topHamburger" class="Centered"><img src="Static/Assets/IMG/hamburgerWhite.png"></button>
+                    </div>
+                </div>
+            </div>
+            <div class="UserBlock Centered">
+                <div class="Block">
+                    <div class="Block ProfileAvatar Absolute">
+                        <img width="1120" height="1120" src="Static/Assets/IMG/Levan.png">
+                    </div>
+                    <div class="Block ProfileDignity">
+                        <p>DIGNITY[0];</p>
+                        <p>AGE[0];</p>
+                    </div>
+                </div>
+            </div>
+            <script>
+                var lazyLoader = new LazyLoader();
+                var HTML = new WindowBuilder();
+                var Body = document.getElementsByTagName(Elements.BODY)[0];
+                var Slider = new carousel();
+                var Selector = new select();
+                function  loadSlider(){
+                    var Created = Slider.CreateSlider();
+                    Slider.setTotalPages(2)
+                    Slider.creatDots();
+                    Slider.getSliderFooter().className = 'Centered';
+                    Slider.getSliderFooter().style.width = '100%';
+                    Slider.getSliderFooter().style.position = 'absolute';
+                    Slider.getSliderFooter().style.bottom = '15px';
+                    Slider.getNextButton().style.position = 'absolute';
+                    Slider.getNextButton().style.right = '20px';
+                    Slider.getSliderFooter().appendChild(Slider.getNextButton());
+                    Body.appendChild(Created);
+                    Slider.setActivePage(Slider.getCreatedDotsMap()[0]);
+                    Slider.createPages();
+                    Slider.ShowPage();
+
+                    var SecondSlider = Selector.getByIdentifierjq(1);
+                    var CircleDiv = HTML.createDiv('circles','','');
+                    Body.appendChild(CircleDiv);
+
+                    lazyLoader.setTarget(SecondSlider);
+                    lazyLoader.setAction(LazyEnum.ACTIVE);
+                    lazyLoader.setStart(0);
+                    lazyLoader.Load();
+
+                }
+                $(document).ready(function (){
+                    $(Elements.BODY).scroll(function(){
+                        lazyLoader.onScroll();
+                    });
+                });
+            </script>
+        </div>
+    </div>
+</body>
+
+</html>

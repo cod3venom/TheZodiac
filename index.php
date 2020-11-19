@@ -37,6 +37,7 @@
     if($session->LoggedIN()){
 
         $myprofile = new MyProfile();
+
         if(Route::isDefault()){
             $myprofile->Load();
         }
