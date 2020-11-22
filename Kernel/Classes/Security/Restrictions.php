@@ -140,11 +140,56 @@ class Restrictions
     CONST NO_GENDER_TXT = 'CHOOSE_CORECT_GENDER';
 
 
+    /*
+     * WORLDS
+     */
+
+    CONST ACTION = 'Action';
+    CONST MATTER = 'Matter';
+    CONST INFORMATION = 'Information';
+    CONST FEELING = 'Feeling';
+    CONST FUN = 'Fun';
+    CONST USABILITY = 'Usability';
+    CONST RELATIONS = 'Relations';
+    CONST DESIRE = 'Desire';
+    CONST SEEK = 'Seek';
+    CONST CAREER = 'Career';
+    CONST FUTURE = 'Future';
+    CONST SPIRITUAL = 'Spiritual';
+
+        /*
+         * WORLD COLORS
+         */
+                CONST HEXACTION = '#F5202B';
+                CONST HEXMATTER = '#FF541C';
+                CONST HEXINFORMATION = '#FF8E2E';
+                CONST HEXFEELING = '#FFAE30';
+                CONST HEXFUN = '#FFE119';
+                CONST HEXUSABILITY = '#92FF0C';
+                CONST HEXRELATIONS = '#00E859';
+                CONST HEXDESIRE = '#0EB89E';
+                CONST HEXSEEK = '#2943F7';
+                CONST HEXCAREER = '#1A12B5';
+                CONST HEXFUTURE = '#9027C4';
+                CONST HEXSPIRITUAL = '#B5A0FF';
 
 
     /*
      * LAZY LOADING
      */
 
+
+    /*
+     * PAYMENTS
+     */
+            /*
+             * PAYPAL
+             */
+                    CONST PAYPAL_ID = '';
+                    CONST PAYPAL_SANDBOX = TRUE;
+                    CONST PAYPAL_SUCCESS_URL = '';
+                    CONST PAYPAL_CANCEL_URL = '';
+                    CONST PAYPAL_NOTIFY_URL = '';
+                    CONST PAYPAL_CURRENCY = '';
 
 }

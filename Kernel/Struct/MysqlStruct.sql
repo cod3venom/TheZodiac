@@ -57,6 +57,7 @@ create table PERSON_WORLDS
     PERSON_FEELING                  varchar(50)  not null,
     PERSON_DESIRE                  varchar(50)  not null,
     PERSON_SPIRITUAL                  varchar(50)  not null,
+    PERSON_WALLPAPER                varchar(20)     not null,
     DATE          timestamp default current_timestamp() not null on update current_timestamp()
 );
 
@@ -83,9 +84,9 @@ create table USER_PLAN(
    DATE          timestamp default current_timestamp() not null on update current_timestamp()
 );
 
+DROP TABLE PLANS;
 create table PLANS(
     ID                               int auto_increment primary key,
-    USER_ID                          varchar(100)           not null,
     PLAN_TITLE                       varchar(250)            not null,
     PLAN_DESCRIPTION                 varchar(400)            not null,
     PLAN_PRICE                       varchar(10)             not null,

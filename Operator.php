@@ -1,24 +1,33 @@
 <?php
+    /*
+     * TheZodiac
+     * @author Levan Ostrowski
+     * @project TheZodiac
+     * @created -/-/-
+     */
+
     require_once 'Kernel/Includes/BootLoader.php';
 
-
-    use Kernel\Classes\Auth\Account\InitAccount;
+use Kernel\Classes\Actions\SubUsers\InitFilter;
+use Kernel\Classes\Auth\Account\InitAccount;
     use Kernel\Classes\Auth\Account\InitAuth;
-
     use Kernel\Classes\Data\Objects\PlansToObject;
     use Kernel\Classes\Texts\Bundle;
-
     use Kernel\Classes\Security\ImportIO;
     use Kernel\Classes\Security\Antihacker;
     use Kernel\Classes\Security\Restrictions;
     use Kernel\Classes\Security\Session;
-
-    use Kernel\Classes\Actions\InitSubPersons;
+    use Kernel\Classes\Actions\SubUsers\InitPersonWorlds;
+    use Kernel\Classes\Actions\SubUsers\InitSubPersons;
+    use Kernel\Classes\Actions\Plans\InitPlans;
 
     $session = new Session();
     $initAccount = new InitAccount();
     $antiHacker = new Antihacker();
-    $subUsers = new InitSubPersons();
+    $initsubUsers = new InitSubPersons();
+    $initWorlds = new InitPersonWorlds();
+    $plans = new InitPlans();
+    $filter = new InitFilter();
 
     $session->StartUp();
     if(isset($_POST['Register_user'])){
@@ -31,6 +40,9 @@
         $auth->Auth();
     }
 
+    if(isset($_POST['GetPlans'])){
+        $plans->getPlans();
+    }
     if(isset($_POST['PurchasePlan'])){
         $initAccount->SaveUserPlan();
     }
@@ -46,34 +58,63 @@
             $initAccount->CompareActivationKey();
         }
 
+        /*BEGIN
+         * @table=ZODIAC.SUB_PERSONS
+         * @class=SubPersonsToObject;
+         * @init=InitSubPersons
+         */
         if(isset($_POST['AddSubPerson'])){
             $antiHacker->PostSecurityFilter();
-            $subUsers->Add();
+            $initsubUsers->Add();
         }
         if(isset($_POST['GetSubPerson'])){
             $antiHacker->PostSecurityFilter();
-            $subUsers->getByPersonId();
+            $initsubUsers->getByPersonId();
         }
         if(isset($_POST['UpdateSubPerson'])){
             $antiHacker->PostSecurityFilter();
-            $subUsers->Update();
+            $initsubUsers->Update();
         }
         if(isset($_POST['DeleteSubPerson'])){
             $antiHacker->PostSecurityFilter();
-            $subUsers->Delete();
+            $initsubUsers->Delete();
         }
                                                             //GetAllSubPersons
         if(isset($_POST['GetAllSubPersons']) || isset($_POST['0f9b1b0a37872ae3f6428160d6470e27'])){//
             $antiHacker->PostSecurityFilter();
-            $subUsers->getAllByOwner();
+            $initsubUsers->getAllByOwner();
         }
-                                                            //LazyLoading
-        if(isset($_POST['LazyLoading']) || isset($_POST['cc0c572dfb9a07e867edb7312b533a71']) && isset($_POST['Start']) && isset($_POST['Limit'])){
+                        //LazyLoading
+        if(isset($_POST['cc0c572dfb9a07e867edb7312b533a71']) && isset($_POST['Start'])&& isset($_POST['Limit']) ){
             $antiHacker->PostSecurityFilter();
-            $subUsers->LazyLoading((int)$_POST['Start'], (int)$_POST['Limit']);
+            $initsubUsers->LazyLoading((int)$_POST['Start'], (int)$_POST['Limit']);
         }
+        /*END
+         * @table=ZODIAC.SUB_PERSONS
+         * @class=SubPersonsToObject;
+         * @init=InitSubPersons
+         */
 
+        /*BEGIN
+         * @table=ZODIAC.PERSON)WORLDS
+         * @class=PersonWOrldToObject;
+         * @init=InitPersonWorlds
+         */
+        if(isset($_POST['Worlds']) && isset($_POST['ByOwner']) && isset($_POST['OnlyWorlds'])){
+            $initWorlds->getAllByOwner();
+        }
+        if(isset($_POST['Worlds']) && isset($_POST['ByOwner']) && isset($_POST['StackedAnalysis'])){
+            $initWorlds->getAllSubUserStack();
+        }
+        /*
+         * @init=InitFilter
+         */
+        if(isset($_POST['Filter'])){
+            $antiHacker->PostSecurityFilter();
+            $filter->Search($_POST['Filter']);
+        }
 
     }
+
 
 

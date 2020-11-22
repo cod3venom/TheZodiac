@@ -7,7 +7,7 @@
  * @project TheZodiac
  */
 
-namespace Kernel\Classes\Auth\Account;
+namespace Kernel\Classes\Actions\Profile;
 
 
 use Kernel\Classes\Data\MySql;

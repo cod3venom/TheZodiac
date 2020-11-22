@@ -27,6 +27,7 @@ class PersonWorldToObject extends MySql implements UserToObjectimpl
     private $PERSON_FEELINGS;
     private $PERSON_DESIRE;
     private $PERSON_SPIRITUAL;
+    private $PERSON_WALLPAPER;
     private $DATE;
 
     public function Initialize($PERSON_ID)
@@ -96,18 +97,74 @@ class PersonWorldToObject extends MySql implements UserToObjectimpl
     public function getPersonSpiritual(){return $this->PERSON_SPIRITUAL;}
     public function setPersonSpiritual($spiritual){$this->PERSON_SPIRITUAL = $spiritual;}
 
+    public function getPersonWallpaper(){return $this->PERSON_WALLPAPER;}
+    public function setPersonWallpaper($wallpaper){$this->PERSON_WALLPAPER = $wallpaper;}
+
     public function getDate(){return $this->DATE;}
     private function setDate($date){$this->DATE = $date;}
 
     public function getAllByOwner(){
         $USER_ID = $this->getUserId();
         if(!empty($USER_ID)){
-            $this->CreateStatement(17);
+            $this->CreateStatement(25);
             $this->stmt->bind_param('s',$USER_ID);
             return $this->Select();
         }
     }
 
+    public function PrepareFilter($queryIndex){
+        $queryIndex = (int)$queryIndex;
+        $USER_ID = $this->getUserId();
+        if(!empty($USER_ID)){
+            $this->CreateStatement($queryIndex);
+            $this->stmt->bind_param('s',$USER_ID);
+            return $this->Select();
+
+        }
+    }
+
+    public  function Filter($world){
+            switch ((string)$world){
+                case 'Action':
+                   return $this->PrepareFilter(27);
+                break;
+                case 'Fun':
+                    return $this->PrepareFilter(28);
+                    break;
+                case 'Seek':
+                    return $this->PrepareFilter(29);
+                    break;
+                case 'Matter':
+                    return $this->PrepareFilter(30);
+                    break;
+                case 'Usability':
+                    return $this->PrepareFilter(31);
+                    break;
+                case 'Career':
+                    return $this->PrepareFilter(32);
+                    break;
+                case 'Information':
+                    return $this->PrepareFilter(33);
+                    break;
+                case 'Relation':
+                    return $this->PrepareFilter(34);
+                    break;
+                case 'Future':
+                    return $this->PrepareFilter(35);
+                    break;
+                case 'Feeling':
+                    return $this->PrepareFilter(36);
+                break;
+                case 'Desire':
+                    return $this->PrepareFilter(37);
+                    break;
+                case 'Spiritual':
+                    return $this->PrepareFilter(38);
+                    break;
+                default:
+                    return array();
+            }
+        }
     public function Save()
     {
 

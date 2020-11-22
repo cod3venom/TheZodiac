@@ -17,7 +17,7 @@ use Kernel\Classes\Data\Objects\UserSecurityToObject;
 use Kernel\Classes\Data\Objects\UserPlanToObject;
 use Kernel\Classes\Data\Objects\UserToObjectimpl;
 
-class PlansToObject extends MySql implements UserToObjectimpl
+class PlansToObject extends MySql
 {
     private $USER_ID;
     private $PLAN_TITLE;
@@ -25,10 +25,9 @@ class PlansToObject extends MySql implements UserToObjectimpl
     private $PLAN_PRICE;
     private $PLAN_TYPE;
 
-    public function Initialize($USER_ID)
+    public function Initialize()
     {
-        $this->CreateStatement(13);
-        $this->stmt->bind_param('s',$USER_ID);
+        $this->CreateStatement(12);
         $Result = $this->Select();
         foreach ($Result as $object){
             $this->USER_ID = $object['USER_ID'];
@@ -37,10 +36,6 @@ class PlansToObject extends MySql implements UserToObjectimpl
             $this->setPlanPrice($object['PLAN_PRICE']);
             $this->setPlanType($object['PLAN_TYPE']);
         }
-    }
-    public function Initalize(){
-        $this->CreateStatement(12);
-        return $this->Select();
     }
 
     public function getUserId(){return $this->USER_ID;}
@@ -63,5 +58,10 @@ class PlansToObject extends MySql implements UserToObjectimpl
         $this->stmt->bind_param('sssss', $this->getUserId(), $this->getPlanTitle(), $this->getPlanDescription(), $this->getPlanPrice(), $this->getPlanType());
         $this->Insert();
         return $this->INSERT_STATUS;
+    }
+    public function getAll(){
+        $this->CreateStatement(12);
+        $Result = $this->Select();
+        return $Result;
     }
 }

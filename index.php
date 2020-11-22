@@ -9,7 +9,7 @@
     use Kernel\Classes\Security\Antihacker;
     use Kernel\Classes\Security\FileSystem;
     use Kernel\Classes\Security\Session;
-    use Kernel\Classes\Auth\Account\MyProfile;
+    use Kernel\Classes\Actions\Profile\MyProfile;
 
 
     $session = new Session();

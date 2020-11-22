@@ -1,6 +1,6 @@
 <?php
 
-namespace Kernel\Classes\Actions;
+namespace Kernel\Classes\Actions\SubUsers;
 
 use Kernel\Classes\Data\MySql;
 use Kernel\Classes\Data\Objects\SubUsersToObject;
