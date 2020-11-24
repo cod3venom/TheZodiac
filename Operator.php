@@ -12,7 +12,8 @@ use Kernel\Classes\Actions\SubUsers\InitFilter;
 use Kernel\Classes\Auth\Account\InitAccount;
     use Kernel\Classes\Auth\Account\InitAuth;
     use Kernel\Classes\Data\Objects\PlansToObject;
-    use Kernel\Classes\Texts\Bundle;
+use Kernel\Classes\Security\Mailer;
+use Kernel\Classes\Texts\Bundle;
     use Kernel\Classes\Security\ImportIO;
     use Kernel\Classes\Security\Antihacker;
     use Kernel\Classes\Security\Restrictions;
@@ -20,6 +21,8 @@ use Kernel\Classes\Auth\Account\InitAccount;
     use Kernel\Classes\Actions\SubUsers\InitPersonWorlds;
     use Kernel\Classes\Actions\SubUsers\InitSubPersons;
     use Kernel\Classes\Actions\Plans\InitPlans;
+    use Kernel\Classes\Payment\Payu\OAuth;
+    use Kernel\Classes\Auth\Account\InitAccessTokenizer;
 
     $session = new Session();
     $initAccount = new InitAccount();
@@ -28,6 +31,7 @@ use Kernel\Classes\Auth\Account\InitAccount;
     $initWorlds = new InitPersonWorlds();
     $plans = new InitPlans();
     $filter = new InitFilter();
+    $accesToken = new InitAccessTokenizer();
 
     $session->StartUp();
     if(isset($_POST['Register_user'])){
@@ -47,6 +51,23 @@ use Kernel\Classes\Auth\Account\InitAccount;
         $initAccount->SaveUserPlan();
     }
 
+    if(isset($_GET['payu'])){
+        $auth = new OAuth();
+        $auth->doAuth();
+    }
+    if(isset($_GET['doOrder'])){
+        $auth = new OAuth();
+        $auth->doOrder();
+    }
+
+    if(isset($_POST['ResetPassword'])){
+        $antiHacker->PostSecurityFilter();
+        $accesToken->addToken();
+    }
+    if(isset($_POST['Verify'])){
+        $antiHacker->PostSecurityFilter();
+        $accesToken->CheckToken();
+    }
     if($session->LoggedIN()){
 
         if(isset($_POST['UpdateAccount'])){
@@ -115,6 +136,7 @@ use Kernel\Classes\Auth\Account\InitAccount;
         }
 
     }
+
 
 
 

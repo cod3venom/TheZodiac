@@ -14,7 +14,6 @@ use Kernel\Classes\Security\FileSystem;
 class DBUtill extends FileSystem
 {
     protected const Configuration = 'Kernel/Classes/Data/.dbAccess.c';
-    protected const CUSTOMERS = 'Customers';
 
     public $HOSTNAME = 'HOSTNAME';
     public  $USERNAME = 'USERNAME';

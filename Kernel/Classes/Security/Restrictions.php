@@ -14,6 +14,8 @@ namespace Kernel\Classes\Security;
 class Restrictions
 {
 
+    CONST PROJECT_NAME = 'TheZodiac';
+
     CONST TRUE = 1;
     CONST FALSE = 0;
     /*
@@ -28,9 +30,9 @@ class Restrictions
     /*
     * USER ACCOUNT PLANS
     */
-    CONST USER_FREE = 0;
-    CONST USER_MID = 1;
-    CONST USER_PREMIUM = 2;
+    CONST USER_FREE = 1;
+    CONST USER_MID = 2;
+    CONST USER_PREMIUM = 3;
 
     /*
     * USER ACCOUNT STATUS
@@ -50,9 +52,12 @@ class Restrictions
     * USER REGISTRATION CONSTANTS
     */
     CONST USER_ALREADY_EXISTS = 'USER_ALREADY_EXISTS';
+    CONST USER_DOESNT_EXISTS = 'USER_DOESNT_EXISTS';
     CONST MAX_PASSWORD_LENGTH = 8;
     CONST NOT_VALID_EMAIL = 'NOT_VALID_EMAIL';
     CONST TOO_SHORT_PASSWORD = 'TOO_SHORT_PASSWORD';
+    CONST UPDATED_SUCCESSFULY = 'UPDATED_SUCCESSFULLY';
+    CONST CANT_UPDATE = 'CANT_UPDATE';
     CONST DEFAULT_AVATAR = 'https://as2.ftcdn.net/jpg/00/60/49/77/1000_F_60497703_dibqLWSM9hsHYpmCcXnTlGttVwiwcVX6.jpg';
 
     /*
@@ -69,6 +74,14 @@ class Restrictions
     CONST ACCEPTED_LANGUAGES = ['pl','en','de'];
     CONST BUNDLER_FILE = 'Kernel/Classes/Texts/*.Texts';
 
+    /*
+     * PASSWORD RESET SETTINGS
+     */
+
+    CONST ACCESS_TOKEN_PREFIX = 'Z-';
+    CONST TOKEN_MAXLEN = 7;
+    public static $TOKEN_FROM = 10020;
+    public static $TOKEN_TO = 19020;
 
 
     /*
@@ -97,7 +110,7 @@ class Restrictions
             "samp","script","section","select","small","source","span", "strong","style", "sub","summary","sup","table", "tbody",
             "td","template","textarea","tfoot", "th", "thead","time","title","tr","track", "u","ul", "var", "video","wbr");
 
-    CONST NOT_ALLOWED_CHARS = array('!','#','$','%','^','&','*','(',')','-','_','=','+',';',"'",'"');
+    CONST NOT_ALLOWED_CHARS = array('!','#','$','%','^','&','*','(',')','_','=','+',';',"'",'"');
     CONST NOT_ALLOWED_PHP   = array('<?','?>', 'php','<?php','<?php', 'system(','shell_exec','ls','dir', 'ls -l', 'chmod', 'chown');
     CONST HTML_MAIN = 'Static/Assets/HTML/';
     CONST HTML_AUTH = 'Static/Assets/HTML/Auth/';
@@ -191,5 +204,20 @@ class Restrictions
                     CONST PAYPAL_CANCEL_URL = '';
                     CONST PAYPAL_NOTIFY_URL = '';
                     CONST PAYPAL_CURRENCY = '';
+            /*
+             * PAYU
+             */
+                    CONST PAYU_POSID = '3552497';
+                    CONST PAYU_LONGMD5 = 'a40b61fa8d70c3049602e5d6b7f5b360';
+                    CONST PAYU_CLIENT_ID = '3552497';
+                    CONST PAYU_CLIENT_SECRET = '3dfa43bdce8ec0a24cf4af312b5e67d9';
+
+
+                    CONST PAYU_AUTH_LINK = 'https://secure.payu.com/pl/standard/user/oauth/authorize';
+                    CONST PAY_ORDER_LINK = 'https://secure.payu.com/api/v2_1/orders';
+
+    /*
+     * MAIL SETTINGS
+     */
 
 }

@@ -128,21 +128,22 @@ class InitAccount extends MySql implements DataActionsimp
         }
     }
 
-    public function Update(){
-        $UID = 'e10581aaecd24e4a9e51bbe66a01a84f';
+    public function Update($recovery = ''){
+        $UID = $_SESSION['USER_ID'];
         $this->UserToObject->Initialize($UID);
         $this->UserProfile->Initialize($UID);
         $this->UserSecurity->Initialize($UID);
 
-        if(isset($_POST['Email']) && isset($_POST['Password']))
-        {
-
+        if(isset($_POST['Email'])){
+            $this->UserSecurity->setEmail($_POST['Email']);
+            $this->UserToObject->setUserEmail($_POST['Email']);
         }
-
-        $this->UserToObject->setUserEmail('updated2@gmail.com');
-        $this->UserToObject->setUserPassword('testpwd1234');
-        $this->UserSecurity->setEmail($this->UserToObject->getUserEmail());
-
+        if(isset($_POST['Password'])){
+            $this->UserToObject->setUserPassword($_POST['Password']);
+        }
+        if(!empty($recovery)){
+            $this->UserSecurity->setUserRecovery($recovery);
+        }
         $this->CreateStatement(10);
         $userUserId = $this->UserToObject->getUserId();
         $userUserEmail  = $this->UserToObject->getUserEmail();
@@ -150,7 +151,6 @@ class InitAccount extends MySql implements DataActionsimp
         $userUserLevel  = $this->UserToObject->getUserLevel();
         $profileUserId = $this->UserProfile->getUserId();
         $profileUserAvatar = $this->UserProfile->getUserAvatar();
-        $profileUserName = $this->UserProfile->getUsername();
         $securityUserId = $this->UserSecurity->getUserId();
         $securityUserEmail = $this->UserSecurity->getEmail();
         $securityUserStatus = $this->UserSecurity->getStatus();
@@ -158,11 +158,10 @@ class InitAccount extends MySql implements DataActionsimp
         $securityUserIp = $this->UserSecurity->getUserIP();
         $securityCountry = $this->UserSecurity->getUserCountry();
 
-        $this->stmt->bind_param('ssssssssssssss',
+        $this->stmt->bind_param('sssssssssssss',
         $userUserId, $userUserEmail, $userUserpassword, $userUserLevel,
-        $profileUserId, $profileUserAvatar,$profileUserName,
-        $securityUserId,$securityUserEmail, $securityUserStatus, $securityRecovery,
-        $securityUserIp, $securityCountry,$UID);
+        $profileUserId, $profileUserAvatar,$securityUserId,$securityUserEmail,
+        $securityUserStatus, $securityRecovery, $securityUserIp, $securityCountry,$UID);
         $this->Insert();
     }
     private function CreateSession(){

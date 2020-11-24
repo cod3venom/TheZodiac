@@ -61,19 +61,20 @@ create table PERSON_WORLDS
     DATE          timestamp default current_timestamp() not null on update current_timestamp()
 );
 
+DROP TABLE IF EXISTS USER_SECURITY;
 create table USER_SECURITY
 (
     ID              int auto_increment primary key,
     USER_ID         varchar(100)           not null,
     USER_EMAIL      varchar(250)           not null,
     USER_STATUS     int(1)                 not null,
-    ACCOUNT_STATUS  int(1)                 not null,
-    USER_RECOVERY   varchar(250)           null,
+    ACTIVATION_STATUS  int(1)                 not null,
+    USER_RECOVERY   varchar(7)             null,
     USER_IP         varchar(50)            not null,
     USER_COUNTRY    varchar(50)            not null
 );
 
-
+DROP TABLE IF EXISTS USER_PLAN;
 create table USER_PLAN(
    ID                           int auto_increment primary key,
    USER_ID                      varchar(100)           not null,

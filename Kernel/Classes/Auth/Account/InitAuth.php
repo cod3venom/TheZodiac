@@ -60,7 +60,7 @@ class initAuth extends MySql
     }
 
 
-    private function GetData(){
+    public function GetData(){
         $this->CreateStatement(15);
         $this->stmt->bind_param('s',$this->Email);
         $Result = $this->Select();

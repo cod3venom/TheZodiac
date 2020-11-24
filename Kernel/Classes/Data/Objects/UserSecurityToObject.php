@@ -4,6 +4,7 @@
 namespace Kernel\Classes\Data\Objects;
 
 use Kernel\Classes\Data\MySql;
+use Kernel\Classes\Security\Mailer;
 use Kernel\Classes\Security\Restrictions;
 use Kernel\Classes\Data\Objects\UsersProfileToObject;
 use Kernel\Classes\Data\Objects\UserToObjectimpl;
@@ -51,6 +52,22 @@ class UserSecurityToObject extends MySql implements UserToObjectimpl
             $this->setUserCountry($object['USER_COUNTRY']);
         }
     }
+    public function InitializeByEmail($EMAIL)
+    {
+        $this->USER_EMAIL = $EMAIL;
+        echo $this->USER_EMAIL;
+        $this->CreateStatement(39);
+        $this->stmt->bind_param('s',$this->USER_EMAIL);
+        $Result = $this->Select();
+        foreach ($Result as $object){
+            $this->setEmail($this->USER_EMAIL);
+            $this->setStatus($object['USER_STATUS']);
+            $this->setUserRecovery($object['USER_RECOVERY']);
+            $this->setUserIP($object['USER_IP']);
+            $this->setUserCountry($object['USER_COUNTRY']);
+            echo $object['USER_EMAIL'];
+        }
+    }
 
     public function getUserId(){return $this->USER_ID;}
     public function setUserId($userid){$this->USER_ID = $userid;}
@@ -73,7 +90,10 @@ class UserSecurityToObject extends MySql implements UserToObjectimpl
 
     public function getUserRecovery(){return $this->USER_RECOVERY;}
     public function setUserRecovery($recovery){$this->USER_RECOVERY = $recovery;}
-    public function generateRecovery(){$this->USER_RECOVERY = md5(microtime());}
+    public function generateRecovery(){
+        $int = mt_rand(Restrictions::$TOKEN_FROM,Restrictions::$TOKEN_TO);
+        $this->USER_RECOVERY = Restrictions::ACCESS_TOKEN_PREFIX.$int;
+    }
 
     public function getUserIP(){return $this->USER_IP;}
     public function setUserIP($ip){$this->USER_IP = $ip;}
@@ -101,40 +121,11 @@ class UserSecurityToObject extends MySql implements UserToObjectimpl
     }
 
     private  function SendActivationKey(){
-        $mail = new PHPMailer(true);
-        try
-        {
-            //$mail->SMTPDebug = 4;
-            $mail->isSMTP(true); // telling the class to use SMTP
-            $mail->SMTPOptions = array(
-                'ssl' => array(
-                    'verify_peer' => false,
-                    'verify_peer_name' => false,
-                    'allow_self_signed' => true
-                )
-            );
-            $mail->SMTPSecure = 'ssl';
-            $mail->Host = 'serwer2077094.home.pl ';
-            $mail->Port = 465;
-            $mail->SMTPAuth = true;
-            $mail->Username = "dev@rootsconnector.com";
-            $mail->Password = "dev112it.pl";
-
-
-            $mail->setFrom('dev@rootsconnector.com', 'Sender Name');
-            $mail->addAddress($this->getEmail(), 'Receiver Name');
-            $mail->addReplyTo('dev@rootsconnector.com', 'Sender Name');
-            $mail->Subject = 'TheZodiac Activation';
-            $mail->Body = 'YOUR Activation KEY IS '.$this->getUserRecovery();
-            $mail->send();
-            $this->setMailStatus(Restrictions::TRUE);
-            echo "mail was  successfully sent to the" .$this->getEmail();
-        }
-        catch (Exception $ex)
-        {
-            echo "error ".PHP_EOL.$ex;
-        } finally {
-            return $this->getMailStatus();
-        }
+        $mail = new Mailer();
+        $mail->setMailTo($this->getEmail());
+        $mail->setMailSubject('DEVELOPMENT');
+        $mail->setMailBody('YOUR Activation KEY IS '.$this->getUserRecovery());
+        $mail->Send();
     }
+
 }
