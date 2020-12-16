@@ -3,12 +3,12 @@
 "TheZodiac":
     [
        {
-           "HOST":"serwer2077094.home.pl",
+           "HOST":"shostname",
            "PORT":"465",
-           "USERNAME":"dev@rootsconnector.com",
-           "PASSWORD":"dev112it.pl",
+           "USERNAME":"username",
+           "PASSWORD":"password",
            "ENCRYPTION":"ssl",
-           "MAIL_FROM":"dev@rootsconnector.com",
+           "MAIL_FROM":"mailFrom",
            "MAIL_NAME":"The Zodiac"
        }
     ]
