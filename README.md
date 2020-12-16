@@ -12,4 +12,6 @@
     * PHP 7.4.2 or upper
     * MySql database server
 
-<div style="text-align:center"><img src="Screen.png" /></div>
+<p align="center">
+  <img src="Screen.png"/>
+</p>
