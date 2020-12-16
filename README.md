@@ -6,4 +6,4 @@
     
 </p>
 
-<img src='Screen.png'>
+<img src='Screen.png' align="center">
