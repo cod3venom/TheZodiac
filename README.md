@@ -7,7 +7,7 @@
     all necessary data including personality traits of the current person.
 </p>
 
-####Requirements
+#### Requirements
     * Apache webServer
     * PHP 7.4.2 or upper
     * MySql database server
